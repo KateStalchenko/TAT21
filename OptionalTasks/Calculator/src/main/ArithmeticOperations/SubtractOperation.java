@@ -1,5 +1,8 @@
 package main.ArithmeticOperations;
 
+/**
+ * @author Katsiaryna Stalchanka
+ */
 public class SubtractOperation implements ArithmeticOperations {
     @Override
     /**

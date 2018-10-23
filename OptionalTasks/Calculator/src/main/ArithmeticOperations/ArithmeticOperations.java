@@ -1,7 +1,9 @@
 package main.ArithmeticOperations;
 
 /**
- * Provides interface for performing arithmetic operations.
+ * Provides interface for performing arithmetic operations
+ *
+ * @author Katsiaryna Stalchanka
  */
 public interface ArithmeticOperations {
     /**

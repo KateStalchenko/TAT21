@@ -4,6 +4,8 @@ import main.ArithmeticOperations.*;
 
 /**
  * Is used to create objects of operations
+ *
+ * @author Katsiaryna Stalchanka
  */
 
 class OperationFactory {

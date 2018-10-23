@@ -2,6 +2,10 @@ package main;
 
 import java.util.ArrayList;
 
+/**
+ * @author Katsiaryna Stalchanka
+ */
+
 public class Main {
     /**
      * The entry point to the program

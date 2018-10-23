@@ -1,3 +1,6 @@
+/**
+ * @author Katsiaryna Stalchanka
+ */
 public class Hello {
     /**
      * Print "Hello, NAME" to console. The value(s) of name(s) is(are) taken from command line arguments.

@@ -2,7 +2,10 @@ package main;
 
 /**
  * Is used for parsing string array to double array
+ *
+ * @author Katsiaryna Stalchanka
  */
+
 public class NumberParser {
     /**
      * Parses string array of arguments to double array if it's possible

@@ -1,5 +1,8 @@
 package main.ArithmeticOperations;
 
+/**
+ * @author Katsiaryna Stalchanka
+ */
 public class DivideOperation implements ArithmeticOperations {
     @Override
     /**

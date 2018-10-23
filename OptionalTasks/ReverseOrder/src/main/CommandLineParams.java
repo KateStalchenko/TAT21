@@ -1,5 +1,9 @@
 package main;
 
+/**
+ * @author Katsiaryna Stalchanka
+ */
+
 public class CommandLineParams {
     /**
      * Entry point to the program

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Is used for calculating roots
+ *
+ * @author Katsiaryna Stalchanka
  */
 
 public class QuadraticEquation {

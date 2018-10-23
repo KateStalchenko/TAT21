@@ -2,6 +2,9 @@ package main;
 
 import main.ArithmeticOperations.ArithmeticOperations;
 
+/**
+ *@author Katsiaryna Stalchanka
+ */
 public class Calculator {
     /**
      * Entry point to the program
