@@ -6,7 +6,6 @@ import main.Exceptions.SpaceUsageTooMuchException;
 import main.Furniture.Furniture;
 import main.Furniture.HardFurniture;
 import main.Furniture.SoftFurniture;
-import main.Furniture.Table;
 import main.LightBulbs.LightBulbs;
 
 import java.text.DecimalFormat;
@@ -135,8 +134,8 @@ public class Room {
         for (int i = 0; i < getFurniture().size(); i++) {
             if (getFurniture().get(i) instanceof SoftFurniture) {
                 minOccupiedSpace += ((SoftFurniture) getFurniture().get(i)).getMinSize();
-            } else if (getFurniture().get(i) instanceof Table) {
-                minOccupiedSpace += ((Table) getFurniture().get(i)).getSize();
+            } else if (getFurniture().get(i) instanceof HardFurniture) {
+                minOccupiedSpace += ((HardFurniture) getFurniture().get(i)).getSize();
             }
         }
         return minOccupiedSpace;
@@ -152,8 +151,8 @@ public class Room {
         for (int i = 0; i < getFurniture().size(); i++) {
             if (getFurniture().get(i) instanceof SoftFurniture) {
                 maxOccupiedSpace += ((SoftFurniture) getFurniture().get(i)).getMaxSize();
-            } else if (getFurniture().get(i) instanceof Table) {
-                maxOccupiedSpace += ((Table) getFurniture().get(i)).getSize();
+            } else if (getFurniture().get(i) instanceof HardFurniture) {
+                maxOccupiedSpace += ((HardFurniture) getFurniture().get(i)).getSize();
             }
         }
         return maxOccupiedSpace;
