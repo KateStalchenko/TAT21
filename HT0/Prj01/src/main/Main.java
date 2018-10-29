@@ -1,6 +1,6 @@
 package main;
 
-import main.Exceptions.RoomNotFoundedException;
+import main.Exceptions.RoomNotFoundException;
 import main.Furniture.Armchair;
 import main.Furniture.Table;
 import main.LightBulbs.LightBulbs;
@@ -25,7 +25,7 @@ public class Main {
                     .addLightBulb(new LightBulbs(25))
                     .addFurniture(new Armchair("Armchair_1", 25, 45))
                     .addLightBulb(new LightBulbs(58));
-        } catch (RoomNotFoundedException e) {
+        } catch (RoomNotFoundException e) {
             System.out.println(e.getMessage());
         }
         building1.addRoom(new Room("Bedroom", 258, 4));
@@ -35,7 +35,7 @@ public class Main {
                     .addLightBulb(new LightBulbs(158))
                     .addFurniture(new Table("Table", 45))
                     .addFurniture(new Armchair("Armchair_2", 12, 15));
-        } catch (RoomNotFoundedException e) {
+        } catch (RoomNotFoundException e) {
             System.out.println(e.getMessage());
         }
 

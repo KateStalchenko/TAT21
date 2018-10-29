@@ -111,7 +111,7 @@ public class Room {
      *
      * @return total illumination in the room
      */
-    public double getTotalRoomIllimination() {
+    public double getTotalRoomIllumination() {
         return getTotalWindowsIllumination() + getBulbsPower(this.getBulbs());
     }
 
@@ -230,14 +230,14 @@ public class Room {
         StringBuilder roomIllumination = new StringBuilder();
         if (this.getBulbs().size() != 0) {
             roomIllumination.append(String.format("\t\tIllumination = %s (%d windows, 700 lux each one, bulbs %s )",
-                    decimalFormat.format(this.getTotalRoomIllimination()), this.getWindowsNumber(), this.getBulbsPowerString()));
+                    decimalFormat.format(this.getTotalRoomIllumination()), this.getWindowsNumber(), this.getBulbsPowerString()));
             return roomIllumination.toString();
         } else if (this.getWindowsNumber() > 1) {
             roomIllumination.append(String.format("\t\tIllumination = %s (%s windows, 700 lux each one)",
-                    decimalFormat.format(this.getTotalRoomIllimination()), decimalFormat.format(this.getWindowsNumber())));
+                    decimalFormat.format(this.getTotalRoomIllumination()), decimalFormat.format(this.getWindowsNumber())));
         } else if (this.getWindowsNumber() == 1) {
             roomIllumination.append(String.format("\t\tIllumination = %s (%s window of 700 lux)",
-                    decimalFormat.format(this.getTotalRoomIllimination()), decimalFormat.format(this.getWindowsNumber())));
+                    decimalFormat.format(this.getTotalRoomIllumination()), decimalFormat.format(this.getWindowsNumber())));
         }
         return roomIllumination.toString();
     }

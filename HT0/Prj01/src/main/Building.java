@@ -1,6 +1,6 @@
 package main;
 
-import main.Exceptions.RoomNotFoundedException;
+import main.Exceptions.RoomNotFoundException;
 
 import java.util.ArrayList;
 
@@ -36,15 +36,15 @@ public class Building {
      *
      * @param roomName String name of the room which must be returned
      * @return object of specified room
-     * @throws RoomNotFoundedException when list of rooms of building doesn't contain specified room
+     * @throws RoomNotFoundException when list of rooms of building doesn't contain specified room
      */
-    public Room getRoom(String roomName) throws RoomNotFoundedException {
+    public Room getRoom(String roomName) throws RoomNotFoundException {
         for (int i = 0; i < rooms.size(); i++) {
             if (roomName == rooms.get(i).getName()) {
                 return rooms.get(i);
             }
         }
-        throw new RoomNotFoundedException("This room doesn't exist.");
+        throw new RoomNotFoundException("This room doesn't exist.");
     }
 
     /**
