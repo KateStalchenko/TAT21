@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  * @author Katsiaryna Stalchanka
  * @since 03.11.2018
  */
-class GenerateHtml {
+class HtmlExporter {
     /**
      * Generates xml file for specified ArrayList<Song> of songs and saves it on indicated path
      *
@@ -35,6 +35,12 @@ class GenerateHtml {
         write.close();
     }
 
+    /**
+     * Generates group songs data in form of Artist-Album-Song Titles
+     *
+     * @param userSongs represents ArrayList<Song> of userSongs
+     * @return string value for html file
+     */
     private String generateDataForHtml(ArrayList<Song> userSongs) {
         Map<String, Map<String, List<Song>>> sortedSongs = userSongs
                 .stream()
@@ -65,13 +71,17 @@ class GenerateHtml {
                             .append(String.format("<a href=\"%s\">Link</a>", userSong.getLink()));
                     html.append("</li>");
                 }
+
                 html.append("</ul>");
                 html.append("</li>");
             }
+
             html.append("</ul>");
             html.append("</li>");
         }
+
         html.append("</ul>");
+
         return html.toString();
     }
 }

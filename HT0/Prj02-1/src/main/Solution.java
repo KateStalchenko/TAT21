@@ -16,7 +16,7 @@ public class Solution {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        if (!new Solution().verifyArgs(args)) {
+        if (!verifyArgs(args)) {
             return;
         }
 
@@ -33,11 +33,11 @@ public class Solution {
         ArrayList<Song> songs = new FileTools().createListOfSongs(allMp3FilesFromDir);
 
         Map<String, List<String>> duplicateByCheksum = new SongUtils().getDuplicatedSongsWithTheSameChecksum(songs);
-        Map<SongAlbumArtistKey, List<String>> duplicatedSongArtistAlbumName = new SongUtils().getDuplicatedSongArtistAlbumName(songs);
+        Map<SongAlbumArtistKey, List<String>> duplicatedSongArtistAlbumName = new SongUtils().getDuplicatedSongsArtistAlbumName(songs);
 
-        File htmlFile = new File("E:\\Dev\\music.html");
+        String outputFilePath =  "E:\\Dev\\music.html";
         try {
-            new GenerateHtml().generateHtml(songs, htmlFile.getPath());
+            new HtmlExporter().generateHtml(songs, outputFilePath);
         } catch (IOException e) {
             System.out.println("You need to indicate correct path to save xml file.");
             return;
@@ -50,7 +50,7 @@ public class Solution {
      * @param args from command line
      * @return true if the data is correct
      */
-    private boolean verifyArgs(String[] args) {
+    private static boolean verifyArgs(String[] args) {
         if ((args.length == 0) || (args == null)) {
             System.out.println("You need to provide the path to your music.");
             return false;

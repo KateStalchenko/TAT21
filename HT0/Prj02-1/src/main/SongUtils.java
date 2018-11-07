@@ -15,7 +15,7 @@ class SongUtils {
      * Creates Map<String, List<String>> of duplicated songs with the same checksum
      *
      * @param songs represents ArrayList<Song> of user songs
-     * @return Map<String       ,               List       <       String>> of duplicated songs with the same checksum
+     * @return Collection of duplicated songs with the same checksum
      */
     Map<String, List<String>> getDuplicatedSongsWithTheSameChecksum(ArrayList<Song> songs) {
         Map<String, List<Song>> songsByChecksum = songs.stream().collect(Collectors.groupingBy(Song::getChecksum));
@@ -45,9 +45,9 @@ class SongUtils {
      * Creates Map<SongAlbumArtistKey, List<String>> of songs with the same Title, AlbumName and Artist and their paths
      *
      * @param songs represents ArrayList<Song> of user songs
-     * @return Map<SongAlbumArtistKey       ,               List       <       String>> of the duplicates
+     * @return Collection of the duplicates
      */
-    Map<SongAlbumArtistKey, List<String>> getDuplicatedSongArtistAlbumName(ArrayList<Song> songs) {
+    Map<SongAlbumArtistKey, List<String>> getDuplicatedSongsArtistAlbumName(ArrayList<Song> songs) {
         Map<SongAlbumArtistKey, List<Song>> songAlbumArtistKeyListMap = songs
                 .stream()
                 .collect(Collectors.groupingBy(
@@ -82,7 +82,7 @@ class SongUtils {
      * Creates object of SongAlbumArtistKey from Song to compare with another Songs
      *
      * @param song represents Song which must be convert to SongAlbumArtistKey
-     * @return SongAlbumArtistKey
+     * @return key based on Song, Album, Artist
      */
     private static SongAlbumArtistKey getSongAlbumArtistKey(Song song) {
         SongAlbumArtistKey songAlbumArtistKey = new SongAlbumArtistKey();
