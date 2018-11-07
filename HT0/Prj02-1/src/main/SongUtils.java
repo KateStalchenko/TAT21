@@ -5,11 +5,18 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
+ * Represents useful methods to work with songs
+ *
  * @author Katsiaryna Stalchanka
  * @since 04.11.2018
  */
 class SongUtils {
-
+    /**
+     * Creates Map<String, List<String>> of duplicated songs with the same checksum
+     *
+     * @param songs represents ArrayList<Song> of user songs
+     * @return Map<String       ,               List       <       String>> of duplicated songs with the same checksum
+     */
     Map<String, List<String>> getDuplicatedSongsWithTheSameChecksum(ArrayList<Song> songs) {
         Map<String, List<Song>> songsByChecksum = songs.stream().collect(Collectors.groupingBy(Song::getChecksum));
         Map<String, List<String>> songsByChecksumWithPath = new HashMap<>();
@@ -34,6 +41,12 @@ class SongUtils {
         return songsByChecksumWithPath;
     }
 
+    /**
+     * Creates Map<SongAlbumArtistKey, List<String>> of songs with the same Title, AlbumName and Artist and their paths
+     *
+     * @param songs represents ArrayList<Song> of user songs
+     * @return Map<SongAlbumArtistKey       ,               List       <       String>> of the duplicates
+     */
     Map<SongAlbumArtistKey, List<String>> getDuplicatedSongArtistAlbumName(ArrayList<Song> songs) {
         Map<SongAlbumArtistKey, List<Song>> songAlbumArtistKeyListMap = songs
                 .stream()
@@ -65,6 +78,12 @@ class SongUtils {
         return duplicatedSongArtistAlbumNamePaths;
     }
 
+    /**
+     * Creates object of SongAlbumArtistKey from Song to compare with another Songs
+     *
+     * @param song represents Song which must be convert to SongAlbumArtistKey
+     * @return SongAlbumArtistKey
+     */
     private static SongAlbumArtistKey getSongAlbumArtistKey(Song song) {
         SongAlbumArtistKey songAlbumArtistKey = new SongAlbumArtistKey();
         songAlbumArtistKey.setSong(song.getTitle());

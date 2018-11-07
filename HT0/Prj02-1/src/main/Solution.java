@@ -9,15 +9,22 @@ import java.util.Map;
  * @since 03.11.2018
  */
 public class Solution {
+    /**
+     * The entry point to the program
+     *
+     * @param args represents string path received from command line
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         if (!new Solution().verifyArgs(args)) {
             return;
         }
 
         String path = args[0];
+
         ArrayList<File> allMp3FilesFromDir;
         try {
-            allMp3FilesFromDir = new FileTools().getAllMp3Files(path);
+            allMp3FilesFromDir = new FileTools().getAllMusicFiles(path);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return;
@@ -29,9 +36,20 @@ public class Solution {
         Map<SongAlbumArtistKey, List<String>> duplicatedSongArtistAlbumName = new SongUtils().getDuplicatedSongArtistAlbumName(songs);
 
         File htmlFile = new File("E:\\Dev\\music.html");
-        new GenerateHtml().generateHtml(songs, htmlFile.getPath());
+        try {
+            new GenerateHtml().generateHtml(songs, htmlFile.getPath());
+        } catch (IOException e) {
+            System.out.println("You need to indicate correct path to save xml file.");
+            return;
+        }
     }
 
+    /**
+     * Verifies arguments from command line
+     *
+     * @param args from command line
+     * @return true if the data is correct
+     */
     private boolean verifyArgs(String[] args) {
         if ((args.length == 0) || (args == null)) {
             System.out.println("You need to provide the path to your music.");

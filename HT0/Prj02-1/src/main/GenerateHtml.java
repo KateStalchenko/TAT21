@@ -7,11 +7,19 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
+ * Represents class to Generate xml
+ *
  * @author Katsiaryna Stalchanka
  * @since 03.11.2018
  */
 class GenerateHtml {
-
+    /**
+     * Generates xml file for specified ArrayList<Song> of songs and saves it on indicated path
+     *
+     * @param userSongs represents ArrayList<Song> of user songs
+     * @param path      indicates the location where the xml file will be saved
+     * @throws IOException when the incorrect path have been indicated
+     */
     void generateHtml(ArrayList<Song> userSongs, String path) throws IOException {
         StringBuilder html = new StringBuilder();
 

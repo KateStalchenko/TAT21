@@ -1,6 +1,8 @@
 import java.util.Objects;
 
 /**
+ * Represents object of Song
+ *
  * @author Katsiaryna Stalchanka
  * @since 03.11.2018
  */

@@ -1,6 +1,8 @@
 import java.util.Objects;
 
 /**
+ * Represents SongAlbumArtistKey object to use it when grouping songs
+ *
  * @author Katsiaryna Stalchanka
  * @since 07.11.2018
  */

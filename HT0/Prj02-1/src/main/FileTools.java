@@ -12,24 +12,31 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
+ * Represents useful methods to work with files
+ *
  * @author Katsiaryna Stalchanka
  * @since 03.11.2018
  */
-public class FileTools {
-    ArrayList<File> getAllMp3Files(String path) throws InvalidPathException {
+class FileTools {
+    /**
+     * Finds all music files in indicated directory
+     *
+     * @param path represents String value where all music files must be found
+     * @return ArrayList<File> of found files
+     * @throws InvalidPathException when invalid path is indicated
+     */
+    ArrayList<File> getAllMusicFiles(String path) throws InvalidPathException {
         String type[] = {"mp3", "wav", "aiff", "ape", "flac"};
         return new ArrayList<>(FileUtils.listFiles(new File(path), type, true));
     }
 
-    public ArrayList<File> getAllMp3Files_SteamAPI(String path) throws IOException {
-        ArrayList<File> mp3Files = new ArrayList<>();
-        Files.walk(Paths.get(path)).forEach(rootFile -> {
-            if (rootFile.getFileName().toString().endsWith("mp3"))
-                mp3Files.add(rootFile.toFile());
-        });
-        return mp3Files;
-    }
-
+    /**
+     * Creates list of Songs from list of Files
+     *
+     * @param rootList represents ArrayList<File> which must be convert to object Song
+     * @return ArrayList<Song>
+     * @throws IOException when song has incorrect path
+     */
     ArrayList<Song> createListOfSongs(ArrayList<File> rootList) throws IOException {
         ArrayList<Song> songs = new ArrayList<>();
         for (File song : rootList) {
@@ -58,6 +65,12 @@ public class FileTools {
         return songs;
     }
 
+    /**
+     * Verifies if AudioFile has tag Title and returns Title
+     *
+     * @param rootSong represents AudioFile which is verified
+     * @return title of AudioFile
+     */
     private String verifyHasName(AudioFile rootSong) {
         if (rootSong.getTag() == null) {
             return "Unknown Title";
@@ -70,6 +83,12 @@ public class FileTools {
         return titleTag;
     }
 
+    /**
+     * Verifies if AudioFile has tag AlbumName and returns it
+     *
+     * @param rootSong represents AudioFile which is verified
+     * @return AlbumName of AudioFile
+     */
     private String verifyAlbumName(AudioFile rootSong) {
         if (rootSong.getTag() == null) {
             return "Unknown Album Name";
@@ -81,6 +100,12 @@ public class FileTools {
         return rootSong.getTag().getFirst(FieldKey.ALBUM);
     }
 
+    /**
+     * Verifies if AudioFile has tag Artist and returns it
+     *
+     * @param rootSong represents AudioFile which is verified
+     * @return Artist of AudioFile
+     */
     private String verifyArtistName(AudioFile rootSong) {
         if (rootSong.getTag() == null) {
             return "Unknown Artist";

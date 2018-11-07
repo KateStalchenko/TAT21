@@ -2,6 +2,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
+ * Represents Logger class
+ *
  * @author Katsiaryna Stalchanka
  * @since 05.11.2018
  */
