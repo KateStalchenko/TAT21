@@ -1,5 +1,3 @@
-package main;
-
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 import org.jaudiotagger.audio.AudioFile;

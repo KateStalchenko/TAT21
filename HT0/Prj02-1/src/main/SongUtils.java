@@ -1,5 +1,3 @@
-package main;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +17,9 @@ class SongUtils {
         for (String keyCheckSum : songsByChecksum.keySet()) {
             List<Song> tempListSongs = songsByChecksum.get(keyCheckSum);
             if (tempListSongs.size() > 1) {
+                Log.info(String.format("The duplicated songs with the same checksum: %s", keyCheckSum));
                 for (Song tempSong : tempListSongs) {
+                    Log.info(String.format("Checksum: %s. Song: %s. Location: %s.",tempSong.getChecksum(), tempSong.getName(), tempSong.getLink()));
                     if (!songsByChecksumWithPath.containsKey(keyCheckSum)) {
                         songsByChecksumWithPath.put(keyCheckSum, new ArrayList<String>() {{
                             add(tempSong.getLink());
