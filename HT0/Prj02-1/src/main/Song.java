@@ -5,19 +5,19 @@ import java.util.Objects;
  * @since 03.11.2018
  */
 public class Song {
-    private String name;
+    private String title;
     private String link;
     private String albumName;
     private String artist;
     private String checksum;
     private int duration;
 
-    String getName() {
-        return name;
+    String getTitle() {
+        return title;
     }
 
-    void setName(String name) {
-        this.name = name;
+    void setTitle(String title) {
+        this.title = title;
     }
 
     int getDuration() {
@@ -66,7 +66,7 @@ public class Song {
         if (o == null || getClass() != o.getClass()) return false;
         Song song = (Song) o;
         return duration == song.duration &&
-                Objects.equals(name, song.name) &&
+                Objects.equals(title, song.title) &&
                 Objects.equals(link, song.link) &&
                 Objects.equals(albumName, song.albumName) &&
                 Objects.equals(artist, song.artist) &&
@@ -75,6 +75,6 @@ public class Song {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, duration, link, albumName, artist, checksum);
+        return Objects.hash(title, duration, link, albumName, artist, checksum);
     }
 }

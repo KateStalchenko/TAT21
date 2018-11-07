@@ -50,7 +50,7 @@ class GenerateHtml {
 
                 for (Song userSong : songs) {
                     html.append("<li>")
-                            .append(userSong.getName())
+                            .append(userSong.getTitle())
                             .append(" ")
                             .append(userSong.getDuration())
                             .append(" ")

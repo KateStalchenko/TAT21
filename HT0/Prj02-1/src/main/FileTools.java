@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @since 03.11.2018
  */
 public class FileTools {
-    ArrayList<File> getAllMp3Files_ApacheCommons(String path) throws InvalidPathException {
+    ArrayList<File> getAllMp3Files(String path) throws InvalidPathException {
         String type[] = {"mp3", "wav", "aiff", "ape", "flac"};
         return new ArrayList<>(FileUtils.listFiles(new File(path), type, true));
     }
@@ -49,7 +49,7 @@ public class FileTools {
             Song songMp3 = new Song();
             songMp3.setDuration(duration);
             songMp3.setLink(song.getAbsolutePath());
-            songMp3.setName(verifyHasName(song));
+            songMp3.setTitle(verifyHasName(audioFile));
             songMp3.setAlbumName(verifyAlbumName(audioFile));
             songMp3.setArtist(verifyArtistName(audioFile));
             songMp3.setChecksum(checkSum);
@@ -58,11 +58,16 @@ public class FileTools {
         return songs;
     }
 
-    private String verifyHasName(File rootSong) {
-        if ((rootSong.getName() == null) || rootSong.getName().isEmpty()) {
-            return "Unknown Name";
+    private String verifyHasName(AudioFile rootSong) {
+        if (rootSong.getTag() == null) {
+            return "Unknown Title";
         }
-        return rootSong.getName();
+
+        String titleTag = rootSong.getTag().getFirst(FieldKey.TITLE);
+        if ((titleTag == null) || (titleTag.isEmpty())) {
+            return "Unknown Title";
+        }
+        return titleTag;
     }
 
     private String verifyAlbumName(AudioFile rootSong) {

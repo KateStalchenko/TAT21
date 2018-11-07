@@ -17,7 +17,7 @@ public class Solution {
         String path = args[0];
         ArrayList<File> allMp3FilesFromDir;
         try {
-            allMp3FilesFromDir = new FileTools().getAllMp3Files_ApacheCommons(path);
+            allMp3FilesFromDir = new FileTools().getAllMp3Files(path);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return;
@@ -25,7 +25,8 @@ public class Solution {
 
         ArrayList<Song> songs = new FileTools().createListOfSongs(allMp3FilesFromDir);
 
-        Map<String, List<String>> duplicateByCheksum = new SongUtils().getDuplicatedSongs(songs);
+        Map<String, List<String>> duplicateByCheksum = new SongUtils().getDuplicatedSongsWithTheSameChecksum(songs);
+        Map<SongAlbumArtistKey, List<String>> duplicatedSongArtistAlbumName = new SongUtils().getDuplicatedSongArtistAlbumName(songs);
 
         File htmlFile = new File("E:\\Dev\\music.html");
         new GenerateHtml().generateHtml(songs, htmlFile.getPath());
