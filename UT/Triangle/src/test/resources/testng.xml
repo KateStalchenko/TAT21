@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Verify Triangle" thread-count="3">
+    <test name="positive tests">
+        <groups>
+            <run>
+                <include name="positive test"/>
+            </run>
+        </groups>
+    </test>
+
+    <test name="negative tests">
+        <groups>
+            <run>
+                <include name="negative test"/>
+            </run>
+        </groups>
+    </test>
+</suite>
