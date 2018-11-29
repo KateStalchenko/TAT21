@@ -1,19 +1,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Verify Triangle" thread-count="3">
+<suite name="Verify Triangle" parallel="true" thread-count="2">
     <test name="positive tests">
-        <groups>
-            <run>
-                <include name="positive test"/>
-            </run>
-        </groups>
+        <classes>
+            <class name="tstPositiveVerifyTriangle"></class>
+        </classes>
     </test>
 
     <test name="negative tests">
-        <groups>
-            <run>
-                <include name="negative test"/>
-            </run>
-        </groups>
+        <classes>
+            <class name="tstNegativeVerifyTriangle"></class>
+        </classes>
     </test>
 </suite>
