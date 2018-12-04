@@ -39,7 +39,6 @@ public class ManagePhoneServlet extends HttpServlet {
         String id = request.getParameter("id");
         String ownerId = request.getParameter("ownerId");
 
-        // If id and action weren't specified, just show person's info
         if ((action == null) && (ownerId == null)) {
             request.setAttribute("jspParameters", jspParameters);
             dispatcherForManagePhone.forward(request, response);
@@ -79,14 +78,8 @@ public class ManagePhoneServlet extends HttpServlet {
         }
     }
 
-    /**
-     * Sets attributes for request to add new phone.
-     *
-     * @param request       request to set attributes
-     * @param jspParameters page parameters that must be transferred with request
-     */
-    private void actionAddPhone(HttpServletRequest request,
-                                HashMap<String, String> jspParameters) {
+    //Sets attributes for request to add new phone
+    private void actionAddPhone(HttpServletRequest request, HashMap<String, String> jspParameters) {
         Phone emptyPhone = new Phone();
         jspParameters.put("currentAction", "addPhone");
         jspParameters.put("nextAction", "addPhoneGo");
@@ -95,16 +88,8 @@ public class ManagePhoneServlet extends HttpServlet {
         request.setAttribute("jspParameters", jspParameters);
     }
 
-    /**
-     * Sets attributes for request to edit phone.
-     *
-     * @param request       request to set attributes
-     * @param jspParameters page parameters that must be transferred with request
-     */
-    private void actionEditPhone(HttpServletRequest request,
-                                 HashMap<String, String> jspParameters,
-                                 String id,
-                                 String ownerId) {
+    //Sets attributes for request to edit phone
+    private void actionEditPhone(HttpServletRequest request, HashMap<String, String> jspParameters, String id, String ownerId) {
         Phone editablePhone = this.phonebook.getPerson(ownerId).getPhones().get(id);
         jspParameters.put("currentAction", "editPhone");
         jspParameters.put("nextAction", "editPhoneGo");
@@ -113,17 +98,8 @@ public class ManagePhoneServlet extends HttpServlet {
         request.setAttribute("jspParameters", jspParameters);
     }
 
-    /**
-     * Sets attributes for request about success of phone deleting. Invokes phonebook method to delete
-     * phone entry from database.
-     *
-     * @param request       request to set attributes
-     * @param jspParameters page parameters that must be transferred with request
-     */
-    private void actionDeletePhone(HttpServletRequest request,
-                                   HashMap<String, String> jspParameters,
-                                   String id,
-                                   String ownerId) {
+    // Sets attributes for request about success of phone deleting and invokes phonebook method to delete
+    private void actionDeletePhone(HttpServletRequest request, HashMap<String, String> jspParameters, String id, String ownerId) {
         if (phonebook.deletePhone(id, ownerId)) {
             jspParameters.put("currentActionResult", "DELETION_SUCCESS");
             jspParameters.put("currentActionResultLabel", "Удаление выполнено успешно");
@@ -135,17 +111,8 @@ public class ManagePhoneServlet extends HttpServlet {
         request.setAttribute("jspParameters", jspParameters);
     }
 
-    /**
-     * Sets attributes for request about success of phone adding. Invokes phonebook method to add
-     * phone entry to database.
-     *
-     * @param request       request to set attributes
-     * @param jspParameters page parameters that must be transferred with request
-     */
-    private void actionAddPhoneSubmit(HttpServletRequest request,
-                                      HttpServletResponse response,
-                                      HashMap<String, String> jspParameters,
-                                      RequestDispatcher dispatcherForManagePhone)
+    // Sets attributes for request about success of phone adding and invokes phonebook method to add
+    private void actionAddPhoneSubmit(HttpServletRequest request, HttpServletResponse response, HashMap<String, String> jspParameters, RequestDispatcher dispatcherForManagePhone)
             throws IOException, ServletException {
         Phone newPhone = new Phone(
                 request.getParameter("ownerId"),
@@ -169,7 +136,6 @@ public class ManagePhoneServlet extends HttpServlet {
                     newPhone.getOwnerId());
         }
 
-        // If error occurred, then show adding form again
         else {
             jspParameters.put("currentAction", "addPhone");
             jspParameters.put("nextAction", "addPhoneGo");
@@ -182,17 +148,8 @@ public class ManagePhoneServlet extends HttpServlet {
         }
     }
 
-    /**
-     * Sets attributes for request about success of phone editing. Invokes phonebook method to edit
-     * phone entry in database.
-     *
-     * @param request       request to set attributes
-     * @param jspParameters page parameters that must be transferred with request
-     */
-    private void actionEditPhoneSubmit(HttpServletRequest request,
-                                       HttpServletResponse response,
-                                       HashMap<String, String> jspParameters,
-                                       RequestDispatcher dispatcherForManagePhone)
+    // Sets attributes for request about success of phone editing. Invokes phonebook method to edit
+    private void actionEditPhoneSubmit(HttpServletRequest request, HttpServletResponse response, HashMap<String, String> jspParameters, RequestDispatcher dispatcherForManagePhone)
             throws IOException, ServletException {
         Phone updatablePhone = this.phonebook.getPhone(
                 request.getParameter("ownerId"),

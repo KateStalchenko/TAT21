@@ -73,8 +73,7 @@
                         }
                     }
                 %>
-                <br><a
-                    href="<%=request.getContextPath()%>/phone/?action=<%="addPhone"%>&ownerId=<%=person.getId()%>">Добавить</a>
+                <br><a href="<%=request.getContextPath()%>/phone/?action=<%="addPhone"%>&ownerId=<%=person.getId()%>">Добавить</a>
             </td>
         </tr>
         <%
