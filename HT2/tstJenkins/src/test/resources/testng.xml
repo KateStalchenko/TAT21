@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Tests" verbose="1">
+    <test name="create user">
+        <classes>
+            <class name="PageObjectTests.tstCreateUser"></class>
+        </classes>
+    </test>
+
+    <test name="delete user">
+        <classes>
+            <class name="PageObjectTests.tstDeleteUser"></class>
+        </classes>
+    </test>
+</suite>
