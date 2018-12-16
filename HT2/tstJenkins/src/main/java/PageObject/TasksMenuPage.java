@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  * @author Katsiaryna Stalchanka
  * @since 06-Dec-18
  */
-public class TasksMenuObject extends DriverPageObject {
+public class TasksMenuPage extends BasePage {
     private By newItem = By.xpath("//div[@id='tasks']//a[text()='New Item']");
     private By people = By.xpath("//div[@id='tasks']//a[text()='People']");
     private By buildHistory = By.xpath("//div[@id='tasks']//a[text()='Build History']");
@@ -17,7 +17,7 @@ public class TasksMenuObject extends DriverPageObject {
     private By credentials = By.xpath("//div[@id='tasks']//a[text()='Credentials']");
     private By newView = By.xpath("//div[@id='tasks']//a[text()='New View']");
 
-    public TasksMenuObject(WebDriver driver) {
+    public TasksMenuPage(WebDriver driver) {
         super(driver);
     }
 

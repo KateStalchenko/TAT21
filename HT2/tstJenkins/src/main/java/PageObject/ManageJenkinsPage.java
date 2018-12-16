@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  * @author Katsiaryna Stalchanka
  * @since 06-Dec-18
  */
-public class ManageJenkinsObject extends DriverPageObject {
+public class ManageJenkinsPage extends BasePage {
     private By configureSystem = By.xpath("//div[@id='main-panel']//a[@title='Configure System']");
     private By configureGlobalSecurity = By.xpath("//div[@id='main-panel']//a[@title='Configure Global Security']");
     private By configureCredentials = By.xpath("//div[@id='main-panel']//a[@title='Configure Credentials']");
@@ -27,7 +27,7 @@ public class ManageJenkinsObject extends DriverPageObject {
     private By manageUsers = By.xpath("//div[@id='main-panel']//a[@title='Manage Users']");
     private By prepareForShutdown = By.xpath("//div[@id='main-panel']//a[@class='post ']");
 
-    public ManageJenkinsObject(WebDriver driver) {
+    public ManageJenkinsPage(WebDriver driver) {
         super(driver);
     }
 

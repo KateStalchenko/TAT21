@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  * @author Katsiaryna Stalchanka
  * @since 06-Dec-18
  */
-public class HeaderPageObject extends DriverPageObject {
+public class HeaderPageComponent extends BasePage {
     private By jenkinsNameHeaderLocator = By.id("jenkins-name-icon");
     private By jenkinsImageLocator = By.id("jenkins-head-item");
     private By searchLocator = By.id("search-box");
@@ -20,7 +20,7 @@ public class HeaderPageObject extends DriverPageObject {
     private By arrowLocator = By.xpath("//ul[@id='breadcrumbs']//li[@class='children']");
     private By enableAutoRefreshLocator = By.xpath("//div[@id='right-top-nav']//a");
 
-    public HeaderPageObject(WebDriver driver) {
+    public HeaderPageComponent(WebDriver driver) {
         super(driver);
     }
 }

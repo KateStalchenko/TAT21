@@ -1,66 +1,31 @@
 package PageObjectTests;
 
 import ConstantsString.StringConsts;
-import PageObject.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Katsiaryna Stalchanka
  * @since 10-Dec-18
  */
-public class tstDeleteUser {
-    WebDriver driver;
-
-    @BeforeClass
-    public void beforeClass() {
-        System.setProperty(StringConsts.GECKODRIVER, StringConsts.PATH_GECKODRIVER);
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-    }
-
+public class tstDeleteUser extends tstBase {
     @Test
     public void deleteUser() {
-        driver.get(StringConsts.BASE_URL);
+        pages.signInPage().openPage(StringConsts.BASE_URL);
+        pages.signInPage().signInAndKeepSignin(StringConsts.USERNAME, StringConsts.PASSWORD, StringConsts.isKeepSignIn);
 
-        SignInPageObject signInPageObject = new SignInPageObject(driver);
-        signInPageObject.signIn(StringConsts.USERNAME, StringConsts.PASSWORD).signInClick();
+        pages.tasksMenuPage().clickManageJenkins();
 
-        TasksMenuObject tasksMenuObject = new TasksMenuObject(driver);
-        tasksMenuObject.clickManageJenkins();
+        pages.manageJenkinsPage().clickManageUsers();
 
-        ManageJenkinsObject manageJenkinsObject = new ManageJenkinsObject(driver);
-        manageJenkinsObject.clickManageUsers();
+        pages.usersPage().clickDeleteUser();
 
-        UsersObject usersObject = new UsersObject(driver);
-        usersObject.clickDeleteUser();
-
-        DeleteUserObject deleteUserObject = new DeleteUserObject(driver);
-        deleteUserObject.isElementDisplayed(deleteUserObject.getTextLocator());
-        deleteUserObject.clickYesDelete();
-
-        if (usersObject.notExistTrWithSpecifiedText(StringConsts.SOME_USER) == false) {
-            Assert.fail();
+        if (pages.deleteUserPage().isTextLocatorDisplayed()) {
+            pages.deleteUserPage().clickYesDelete();
         }
 
-        if (usersObject.notExistHREFWithSpecifiedData("user/tat21_user/delete") == false) {
-            Assert.fail();
-        }
-
-        if (usersObject.notExistHREFWithSpecifiedData("user/admin/delete") == false) {
-            Assert.fail();
-        }
-    }
-
-    @AfterClass
-    public void afterClass() {
-        driver.quit();
+        Assert.assertFalse(pages.usersPage().isUserExistInTable(StringConsts.SOME_USER));
+        Assert.assertFalse(pages.usersPage().isHrefExist("user/tat21_user/delete"));
+        Assert.assertFalse(pages.usersPage().isHrefExist("user/admin/delete"));
     }
 }

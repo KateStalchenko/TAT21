@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
  * @author Katsiaryna Stalchanka
  * @since 06-Dec-18
  */
-public class SignInPageObject extends DriverPageObject {
+public class SignInPageObject extends BasePage {
     private By usernameLocator = By.id("j_username");
     private By passwordLocator = By.xpath("//div[@class = 'formRow']//input[@name='j_password']");
     private By signInLocator = By.xpath("//div[@class='submit formRow']//input[@name='Submit']");
@@ -35,9 +35,10 @@ public class SignInPageObject extends DriverPageObject {
 
     /**
      * Verifies if the checkbox "Keep Me SignIn" is selected or not
+     *
      * @return true if the checkbox is selected
      */
-    public boolean keepMeSignInTrue() {
+    public boolean isKeepMeSignedInChecked() {
         if (driver.findElement(keepMeSignInBox).isSelected()) {
             return true;
         }
@@ -46,77 +47,52 @@ public class SignInPageObject extends DriverPageObject {
 
     /**
      * Sets username in username form
+     *
      * @param name
-     * @return SignInPageObject
      */
-    private SignInPageObject setUsername(String name) {
+    private void setUsername(String name) {
         driver.findElement(usernameLocator).clear();
         driver.findElement(usernameLocator).sendKeys(name);
-        return this;
     }
 
     /**
      * Sets password in password form
+     *
      * @param password
-     * @return SignInPageObject
      */
-    private SignInPageObject setPassword(String password) {
+    private void setPassword(String password) {
         driver.findElement(passwordLocator).clear();
         driver.findElement(passwordLocator).sendKeys(password);
-        return this;
     }
 
     /**
      * Makes "Keep Me SignIn" selected or not
+     *
      * @param keepMeSignIn
-     * @return SignInPageObject
      */
-    private SignInPageObject setKeepMeSignIn(boolean keepMeSignIn) {
-        if (keepMeSignIn == true) {
+    private void setKeepMeSignedCheckboxState(boolean keepMeSignIn) {
+        if (keepMeSignIn) {
             if (!driver.findElement(keepMeSignInBox).isSelected()) {
                 driver.findElement(keepMeSignInBox).click();
             }
-            return this;
         } else {
             if (driver.findElement(keepMeSignInBox).isSelected()) {
                 driver.findElement(keepMeSignInBox).click();
             }
         }
-        return this;
-    }
-
-    /**
-     * Clicks on signIn button
-     * @return SignInPageObject
-     */
-    public SignInPageObject signInClick() {
-        driver.findElement(signInLocator).click();
-        return this;
-    }
-
-    /**
-     * Sets name and password in forms
-     * @param name
-     * @param password
-     * @return SignInPageObject
-     */
-    public SignInPageObject signIn(String name, String password) {
-        this.setUsername(name);
-        this.setPassword(password);
-        return this;
     }
 
     /**
      * Sets all data in signIn form
+     *
      * @param name
      * @param password
      * @param keepMeSignIn
-     * @return SignInPageObject
      */
-    public SignInPageObject signInAndKeepSignin(String name, String password, boolean keepMeSignIn) {
+    public void signInAndKeepSignin(String name, String password, boolean keepMeSignIn) {
         setUsername(name);
         setPassword(password);
-        setKeepMeSignIn(keepMeSignIn);
-        return this;
+        setKeepMeSignedCheckboxState(keepMeSignIn);
+        driver.findElement(signInLocator).click();
     }
 }

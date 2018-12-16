@@ -16,4 +16,6 @@ public class StringConsts {
     public static final String SOME_PASSWORD = "user125";
     public static final String SOME_FULL_NAME = "Epam Training User";
     public static final String SOME_EMAIL = "o2606280@nwytg.net";
+
+    public static final boolean isKeepSignIn = false;
 }

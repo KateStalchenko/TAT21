@@ -1,59 +1,33 @@
 package PageObjectTests;
 
 import ConstantsString.StringConsts;
-import PageObject.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author Katsiaryna Stalchanka
  * @since 06-Dec-18
  */
-public class tstCreateUser {
-    WebDriver driver;
-
-    @BeforeClass
-    public void beforeClass() {
-        System.setProperty(StringConsts.GECKODRIVER, StringConsts.PATH_GECKODRIVER);
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-    }
-
+public class tstCreateUser extends tstBase {
     @Test
     public void tstCreateUser() {
-        driver.get(StringConsts.BASE_URL);
+        pages.signInPage().openPage(StringConsts.BASE_URL);
+        pages.signInPage().signInAndKeepSignin(StringConsts.USERNAME, StringConsts.PASSWORD, StringConsts.isKeepSignIn);
 
-        SignInPageObject signInPageObject = new SignInPageObject(driver);
-        signInPageObject.signIn(StringConsts.USERNAME, StringConsts.PASSWORD).signInClick();
+        pages.tasksMenuPage().clickManageJenkins();
 
-        TasksMenuObject tasksMenuObject = new TasksMenuObject(driver);
-        tasksMenuObject.clickManageJenkins();
+        pages.manageJenkinsPage().clickManageUsers();
 
-        ManageJenkinsObject manageJenkinsObject = new ManageJenkinsObject(driver);
-        manageJenkinsObject.clickManageUsers();
+        pages.usersPage().createUserLinkExist();
+        if (pages.usersPage().isDisplayedCreateUserLocator()) {
+            pages.usersPage().clickCreateUser();
+        }
 
-        UsersObject usersObject = new UsersObject(driver);
-        usersObject.createUserLinkExist();
-        usersObject.isDisplayed(usersObject.getCreateUserLocator());
-        usersObject.clickCreateUser();
-
-        CreateUserObject createUserObject = new CreateUserObject(driver);
-        createUserObject.isCreateUserFormExist();
-        createUserObject.setAllData(StringConsts.SOME_USER, StringConsts.SOME_PASSWORD,
+        pages.createUserPage().isCreateUserFormExist();
+        pages.createUserPage().populateForm(StringConsts.SOME_USER, StringConsts.SOME_PASSWORD,
                 StringConsts.SOME_FULL_NAME, StringConsts.SOME_EMAIL);
-        createUserObject.clickCreateUser();
+        pages.createUserPage().clickCreateUser();
 
-        usersObject.findTrElementWithSpecifiedText();
-    }
-
-    @AfterClass
-    public void afterClass() {
-        driver.quit();
+        Assert.assertTrue(pages.usersPage().findTrElementWithSpecifiedText());
     }
 }
