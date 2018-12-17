@@ -35,9 +35,6 @@ public class SearchPage extends AbstractPage {
     }
 
     public boolean existPerson(String text) {
-        if (driver.findElements(By.xpath(String.format("//div[contains(@class, 'user-list-item') and .//*[contains(text(),'%s')]]", text))).size() > 0) {
-            return true;
-        }
-        return false;
+        return driver.findElement(By.xpath(String.format("//div[contains(@class, 'user-list-item') and .//*[contains(text(),'%s')]]", text))).isDisplayed();
     }
 }

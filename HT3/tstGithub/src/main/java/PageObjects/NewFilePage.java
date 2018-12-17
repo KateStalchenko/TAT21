@@ -70,7 +70,7 @@ public class NewFilePage extends AbstractPage {
         commitNewFile.click();
     }
 
-    public WebElement getCommitNewFile() {
-        return commitNewFile;
+    public boolean isCommitNewFileEnabled(){
+        return commitNewFile.isEnabled();
     }
 }

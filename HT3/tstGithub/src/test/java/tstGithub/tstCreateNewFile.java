@@ -22,7 +22,7 @@ public class tstCreateNewFile extends tstBase {
 
     @Test
     public void createFileEmptyRepo() {
-        if (steps.currentRepositoryIsEmpty() == true) {
+        if (steps.currentRepositoryIsEmpty()) {
             pages.emptyRepo().clickCreateNewFile();
             Log.info("New File is created.");
         } else {
@@ -36,7 +36,7 @@ public class tstCreateNewFile extends tstBase {
         pages.newFilePage().writeTextNewFileField(PROGRAMMING);
         Log.info("File is fulfilled");
         pages.newFilePage().setCommitText(SOME_COMMIT);
-        if (pages.newFilePage().getCommitNewFile().isEnabled()) {
+        if (pages.newFilePage().isCommitNewFileEnabled()) {
             pages.newFilePage().clickCommitNewFile();
             Log.info("File is committed");
         } else {

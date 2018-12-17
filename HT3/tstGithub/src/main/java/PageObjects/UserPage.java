@@ -38,10 +38,7 @@ public class UserPage extends AbstractPage {
     }
 
     public boolean checkFollowed() {
-        if (unfollowButton.isDisplayed()) {
-            return true;
-        }
-        return false;
+        return unfollowButton.isDisplayed();
     }
 
     public void followPerson() {
